@@ -95,7 +95,7 @@ function handleRefresh(): void {
           <template v-if="organization.fetched_reviews_count > 0">
             Собираем отзывы — уже {{ organization.fetched_reviews_count }}…
           </template>
-          <template v-else> Собираем отзывы, обычно это занимает 10–20 секунд… </template>
+          <template v-else> Собираем отзывы, это может занять до минуты… </template>
         </span>
       </UiAlert>
 

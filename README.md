@@ -42,9 +42,14 @@ cd backend && composer setup && php artisan serve --host=127.0.0.1 --port=8000
 cd frontend && npm install && npm run dev
 ```
 
-### Деплой
+### Развёрнутая версия
 
-Фронтенд — на Vercel, бэкенд — контейнером на Render или Railway, база — Supabase Postgres. Пошагово: [DEPLOY.md](DEPLOY.md).
+- Приложение — <https://parser-ten-iota.vercel.app>
+- Вход тот же: **demo@example.com** / **password**
+
+Фронтенд на Vercel, бэкенд контейнером на Render, база — Supabase Postgres. Как это устроено и как развернуть своё: [DEPLOY.md](DEPLOY.md).
+
+Первый запрос после простоя занимает около минуты: на бесплатном тарифе Render сервис засыпает.
 
 ## Переменные окружения
 

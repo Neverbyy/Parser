@@ -67,7 +67,7 @@ function submit(): void {
     </UiButton>
 
     <p v-if="props.saving" class="form__notice">
-      Парсер обходит страницы отзывов — обычно это занимает 10–20 секунд.
+      Парсер обходит страницы отзывов — это может занять до минуты.
     </p>
   </form>
 </template>
