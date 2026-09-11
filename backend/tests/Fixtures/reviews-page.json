@@ -1,0 +1,63 @@
+{
+    "data": {
+        "reviews": [
+            {
+                "reviewId": "review-with-everything",
+                "businessId": "1145449555",
+                "author": {
+                    "name": "Кучеров Евгений",
+                    "avatarUrl": "https://avatars.mds.yandex.net/get-yapic/37154/abc/{size}",
+                    "professionLevel": "Знаток города 8 уровня",
+                    "publicId": "3enkexprk2jx95h3rv2gyam7qr"
+                },
+                "text": "Стало очень дорого и многое невкусно.",
+                "textLanguage": "ru",
+                "rating": 2,
+                "updatedTime": "2026-09-08T23:35:36.482Z",
+                "reactions": {"likes": 4, "dislikes": 0, "userReaction": "NONE"},
+                "photos": [],
+                "videos": [],
+                "pinned": false
+            },
+            {
+                "reviewId": "review-without-author",
+                "businessId": "1145449555",
+                "author": {
+                    "avatarUrl": "https://avatars.mds.yandex.net/get-yapic/0/0-0/{size}",
+                    "publicId": "anonymous"
+                },
+                "text": "Обычная столовая, но чисто.",
+                "rating": 4,
+                "updatedTime": "2026-09-07T10:00:00.000Z",
+                "photos": []
+            },
+            {
+                "reviewId": "review-with-business-comment",
+                "businessId": "1145449555",
+                "businessComment": {
+                    "text": "Спасибо за отзыв!",
+                    "updatedTime": "2026-09-06T12:00:00.000Z"
+                },
+                "author": {
+                    "name": "Мария",
+                    "avatarUrl": null
+                },
+                "text": "Быстро и вкусно, буду заходить ещё.",
+                "rating": 5,
+                "updatedTime": "2026-09-05T08:15:00.000Z",
+                "photos": []
+            }
+        ],
+        "params": {
+            "offset": 0,
+            "limit": 50,
+            "count": 1391,
+            "loadedReviewsCount": 3,
+            "page": 1,
+            "totalPages": 28,
+            "reviewsRemained": 1388
+        },
+        "tags": [],
+        "aspects": []
+    }
+}

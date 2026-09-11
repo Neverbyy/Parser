@@ -1,0 +1,139 @@
+/* ============================================================
+   Токены
+   ============================================================ */
+
+:root {
+  color-scheme: light;
+
+  --bg: #f5f6f8;
+  --surface: #ffffff;
+  --surface-muted: #f1f3f5;
+  --border: #e3e6ea;
+  --border-strong: #ccd1d8;
+
+  --text: #16191d;
+  --text-muted: #6b7280;
+  --text-subtle: #9aa1ab;
+
+  --accent: #3b5bdb;
+  --accent-hover: #31499f;
+  --accent-soft: #edf2ff;
+
+  --danger: #c92a2a;
+  --danger-soft: #fff5f5;
+  --danger-border: #ffc9c9;
+
+  --warning: #b25e02;
+  --warning-soft: #fff9db;
+  --warning-border: #ffe8a1;
+
+  --success: #2b8a3e;
+  --success-soft: #ebfbee;
+
+  --star: #f0a020;
+
+  --radius: 12px;
+  --radius-sm: 8px;
+
+  --shadow-sm: 0 1px 2px rgb(16 24 40 / 6%);
+  --shadow: 0 1px 2px rgb(16 24 40 / 4%), 0 6px 16px rgb(16 24 40 / 6%);
+
+  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  --page-width: 880px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+
+    --bg: #14161a;
+    --surface: #1b1e23;
+    --surface-muted: #23272d;
+    --border: #2b3038;
+    --border-strong: #3a414b;
+
+    --text: #e8eaed;
+    --text-muted: #9aa1ab;
+    --text-subtle: #767d87;
+
+    --accent: #748ffc;
+    --accent-hover: #91a7ff;
+    --accent-soft: #1e2637;
+
+    --danger: #ff8787;
+    --danger-soft: #2a1d1f;
+    --danger-border: #52302f;
+
+    --warning: #ffc078;
+    --warning-soft: #2a2419;
+    --warning-border: #4d4326;
+
+    --success: #69db7c;
+    --success-soft: #1a2a1f;
+
+    --shadow-sm: 0 1px 2px rgb(0 0 0 / 30%);
+    --shadow: 0 1px 2px rgb(0 0 0 / 24%), 0 6px 16px rgb(0 0 0 / 28%);
+  }
+}
+
+/* ============================================================
+   База
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0;
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Уважаем системную настройку «меньше движения». */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

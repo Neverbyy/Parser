@@ -1,0 +1,59 @@
+# Локальный запуск всего приложения: docker compose up
+#
+# Исходники монтируются внутрь контейнеров, поэтому правки видны сразу,
+# без пересборки образов. Базе отдельный контейнер не нужен — это SQLite,
+# файл лежит рядом с кодом.
+
+services:
+  backend:
+    build: ./backend
+    # Порты вынесены в переменные: если на хосте уже запущен dev-сервер,
+    # compose можно поднять рядом — FRONTEND_PORT=5174 docker compose up
+    ports:
+      - '${BACKEND_PORT:-8000}:8000'
+    volumes:
+      - ./backend:/app
+      # vendor закрыт отдельным томом: на хосте он собран под Windows
+      # и в Linux-контейнере работать не будет.
+      - backend-vendor:/app/vendor
+    environment:
+      APP_URL: http://localhost:${BACKEND_PORT:-8000}
+      FRONTEND_URL: http://localhost:${FRONTEND_PORT:-5173}
+      # Браузер работает с адресом фронтенда — именно его Sanctum должен
+      # считать «своим», иначе сессия не поднимется.
+      SANCTUM_STATEFUL_DOMAINS: localhost:${FRONTEND_PORT:-5173},localhost:${BACKEND_PORT:-8000}
+      SESSION_DOMAIN: localhost
+      DB_CONNECTION: sqlite
+      # sync — разбор идёт прямо в запросе, воркер поднимать не нужно.
+      # Для фонового режима: database + отдельный сервис с queue:work.
+      QUEUE_CONNECTION: sync
+    healthcheck:
+      # Без пробелов вокруг ?: — иначе YAML принимает «: » за вложенный ключ.
+      test:
+        - CMD-SHELL
+        - php -r "exit(@file_get_contents('http://127.0.0.1:8000/up')===false?1:0);"
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      # Первый запуск тратит время на composer install.
+      start_period: 120s
+
+  frontend:
+    build: ./frontend
+    ports:
+      - '${FRONTEND_PORT:-5173}:5173'
+    volumes:
+      - ./frontend:/app
+      - frontend-node-modules:/app/node_modules
+    environment:
+      # Внутри сети бэкенд доступен по имени сервиса, а не по localhost.
+      BACKEND_URL: http://backend:8000
+      # Слежение за файлами через bind-mount с Windows работает только опросом.
+      CHOKIDAR_USEPOLLING: 'true'
+    depends_on:
+      backend:
+        condition: service_healthy
+
+volumes:
+  backend-vendor:
+  frontend-node-modules:
