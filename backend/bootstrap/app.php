@@ -17,6 +17,12 @@ return Application::configure(basePath: dirname(__DIR__))
         // Cookie-аутентификация SPA: запросы с доменов из SANCTUM_STATEFUL_DOMAINS
         // проходят через сессию и CSRF, остальные остаются stateless.
         $middleware->statefulApi();
+
+        // На хостинге приложение стоит за балансировщиком, который
+        // терминирует TLS. Без доверия к X-Forwarded-* Laravel считает
+        // соединение незащищённым и не ставит secure-флаг на куку сессии —
+        // браузер её отбрасывает, и вход перестаёт работать.
+        $middleware->trustProxies(at: '*');
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(

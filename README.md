@@ -42,6 +42,10 @@ cd backend && composer setup && php artisan serve --host=127.0.0.1 --port=8000
 cd frontend && npm install && npm run dev
 ```
 
+### Деплой
+
+Фронтенд — на Vercel, бэкенд — контейнером на Render или Railway, база — Supabase Postgres. Пошагово: [DEPLOY.md](DEPLOY.md).
+
 ## Переменные окружения
 
 Все имеют рабочие значения по умолчанию — для локального запуска ничего задавать не нужно.
